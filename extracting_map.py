@@ -29,9 +29,9 @@ def extract_lat_lng(address_or_postalcode, data_type = "json"):
 # specifying locations from the center of created 4-point polygon
 # creating paths based on these 4 points and display them on the created image of gg maps 
 
-def plot_map(center_coord, map_zoom, map_size, map_path):
+def plot_map(center_coord, map_zoom, map_size, map_path, map_type):
     endpoint = f"https://maps.googleapis.com/maps/api/staticmap" #string
-    params = {"center": center_coord, "zoom": map_zoom, "size": map_size, "path": map_path, "key": api_key} # dictionary 
+    params = {"center": center_coord, "zoom": map_zoom, "size": map_size, "path": map_path, "maptype": map_type, "key": api_key} # dictionary 
     url_params = urlencode(params) # encode dict into URL query string
     url = f"{endpoint}?{url_params}" # comebine two strings
     return url
