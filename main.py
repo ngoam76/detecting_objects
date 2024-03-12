@@ -57,7 +57,7 @@ def result():
         # Process input by calling the function
         image_url = process_input(address1, address2, address3, address4, color, weight, zoom, size, maptype)
 
-        # Render a template with the processed data
+        # Render a template with the processed datax
         return render_template('index.html', image_url=image_url)
     
 if __name__ == '__main__':

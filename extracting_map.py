@@ -2,7 +2,7 @@ import requests
 from urllib.parse import urlencode
 
 
-api_key = "AIzaSyD06zFaNvB9VR8RiUrtwkVr0RX0nWmlnY0" # to access google maps data
+api_key = "AIzaSyAOCo6k-2v5tjFGmYA36iGCaJe_ur5bIfc" # to access google maps data
 
 # geocoding API
 # https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
@@ -34,6 +34,7 @@ def plot_map(center_coord, map_zoom, map_size, map_path, map_type):
     params = {"center": center_coord, "zoom": map_zoom, "size": map_size, "path": map_path, "maptype": map_type, "key": api_key} # dictionary 
     url_params = urlencode(params) # encode dict into URL query string
     url = f"{endpoint}?{url_params}" # comebine two strings
+    print(url)
     return url
     
 
