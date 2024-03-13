@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <!--head and ref-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Detector</title>
+    <link rel="icon" type="image/svg+xml" href="static/vite_project/public/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <!-- Reference to the style.css file -->
+    <link rel="stylesheet" href="static/vite_project/css/style.css">
+    <style>
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!--header and navigation left-->
+    <!--hamburger icon for features-->
+    <div class="navigation-left">
+      <button class="hamburger" onclick="show()">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </button>
+
+      <!--input all the parameters-->
+      <nav class="nvgleft">
+       <form action="/result" method="post">
+        <ul>
+          <header>
+              <p>
+                <br>
+                Please input your
+                <br>
+                address.
+              </p>
+          </header>
+          <div class="scrollbox">
+            <div class="scrollbox-inner">
+              <p>Please enter four different addresses or names to form a 4-point polygon (a path).
+              Objects inside this polygon will be detected for later analysis.</p>
+            </div>
+          </div>
+
+          <!--address boxes-->
+          <div class="box-name">
+            <label for="address1"> 
+            <header>
+              <p>1st Address.</p>
+            </header>
+            </label>
+            <div class="field-group">
+              <input type="text" id="address1" name="address1"/>
+            </div> 
+          </div>
+
+          <div class="box-name">
+            <label for="address2">
+            <header>
+              <p>2nd Address.</p>
+            </header>
+            </label> 
+            <div class="field-group">
+              <input type="text" id="address2" name="address2"/>
+            </div>
+          </div>
+
+          <div class="box-name">
+            <label for="address3">
+            <header>
+              <p>3rd Address.</p>
+            </header>
+            </label>
+            <div class="field-group">
+              <input type="text" id="address3" name="address3"/>
+            </div>
+          </div>
+
+          <div class="box-name">
+            <label for="address4">
+            <header>
+              <p>4th Address.</p>
+            </header>
+            </label>
+            <div class="field-group">
+              <input type="text" id="address4" name="address4"/>
+            </div>
+          </div> 
+          
+
+          <!--change your mark-->
+          <header>
+              <p>
+                Change your
+                <br>
+                mark.
+            </p>
+          </header>
+          <div class="scrollbox">
+            <div class="scrollbox-inner">
+              <p>You can customize your experience by altering the path, color, map type, etc according to your preferences.</p>
+            </div>
+          </div> 
+
+          <!--path color-->
+          <label for="color">
+          <header class="color">
+            <p>Path Color.</p>
+          </header>
+          </label>
+            <p>Please specify a path color either as a 24-bit (example: 0xFFFFCC) or 32-bit hexadecimal value (example: 0xFFFFCCFF), or from the set {black, brown, green, purple, yellow, blue, gray, orange, red, white}.</p>
+            <input type="text" id="color" name="color" />
+
+          <!--path thickness-->
+          <label for="weight">
+          <header class="thickness">
+            <p>Path Thickness.</p>
+          </header>
+          </label>
+            <p>Please specify a path thickness! 2-3 is recommended.</p>
+            <input type="range" id="weight" name="weight" min="0" max="11" value="10" /> 
+            <span id="weight-range-value">10</span>
+
+          <!--map zoom-->
+          <label for="zoom">
+          <header class="zoom">
+            <p>Map Zoom Level.</p>
+          </header>
+          </label>
+            <p>Maps on Google Maps have an integer 'zoom level' which defines the resolution of the current view. Zoom levels between 0 (the lowest zoom level, in which the entire world can be seen on one map) and 21+ (down to streets and individual buildings) are possible within the default roadmap view. Building outlines, where available, appear on the map around zoom level 17. This value differs from area to area and can change over time as the data evolves.</p>
+            <input type="range" id="zoom" name="zoom" min="0" max="25" value="10" />
+            <span id="zoom-range-value">10</span>
+
+          <!--map size-->
+          <label for="size">
+          <header class="size">
+            <p>Map Size.</p>
+          </header>
+          </label>
+            <p>Maximum allowable values for the size of the map is 640x640 pixels.</p>
+            <input type="text" id="size" name="size" />
+
+          <!--map type-->
+          <label for="maptype">
+          <header class="type">
+            <p>Map Type.</p>
+          </header>
+          </label>
+            <p>Available map types: </p>
+            <select id="maptype" name="maptype">
+              <option value="roadmap">Roadmap</option>
+              <option value="satellite">Satellite</option>
+              <option value="terrain">Terrain</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+            <br>
+
+          <input class="button" type="submit" value="Generate Map." />
+
+        </ul>
+      </form>
+      </nav>
+    </div>
+
+    <!--header and navigation right-->
+    <div class="navigation-right">
+      <!--hamburger icon for features-->
+      <button class="plus" onclick="showright()">
+          <div id="ber1" class="ber"></div>
+          <div id="ber2" class="ber"></div>
+      </button>
+      <nav class="nvgright">
+        <ul>
+          <header>
+            Object Detector
+            <br>
+            Map.
+          </header>
+          <p class="companydef">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          </p>
+          <div class="aboutus">
+            <header>
+            <a>About Us.</a>
+            </header><header>
+            <a>Contact.</a>
+            </header>
+          </div>
+        </ul>
+      </nav>
+    </div>
+
+    <!--main body-->
+      <main>
+        <h1>Detect Your</h1> 
+        <h1>Object(s).</h1>
+        <h2>Object Detection with</h2>
+        <h2>Maps Static API and</h2>
+        <h2>Machine Learning.</h2>
+
+        <!--click logo to another page-->
+        <!-- <a href="static/vite_project/firstpage.html"> -->
+          <img src="static/vite_project/images/ODLOGO-05-05.svg"
+          class="logo-company" href>
+        <!-- </a> -->
+        
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br> 
+        <br>
+        <br>
+        <br>
+        {% if image_url %}
+        <h2>Generated Map:</h2>
+        <!-- <p>{{ image_url }}</p> -->
+        <img src="{{ image_url }}" alt="Generated Image" />
+        {% endif %}
+
+      </main> 
+
+      <script src="static/vite_project/main.js"></script>
+  </body>
+</html>
+
