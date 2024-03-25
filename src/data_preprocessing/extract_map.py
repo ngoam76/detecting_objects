@@ -12,6 +12,7 @@ def extract_lat_lng(address_or_postalcode, data_type = "json"):
     params = {"address": address_or_postalcode, "key": api_key} # dictionary 
     url_params = urlencode(params) # encode dict into URL query string
     url = f"{endpoint}?{url_params}" # comebine two strings
+    print(url)
     r = requests.get(url)
     if r.status_code not in range(200, 299):
         return {} # dictionary
@@ -34,6 +35,7 @@ def plot_map(center_coord, map_zoom, map_size, map_path, map_type):
     params = {"center": center_coord, "zoom": map_zoom, "size": map_size, "path": map_path, "maptype": map_type, "key": api_key} # dictionary 
     url_params = urlencode(params) # encode dict into URL query string
     url = f"{endpoint}?{url_params}" # comebine two strings
+    print(url)
     return url
     
 
